@@ -1,0 +1,18 @@
+#######
+# root
+#######
+# ignore system files
+**/.*
+# ignore everything in the root
+/*
+# un-ignore dirs in root
+!/src/
+!/.github/
+# un-ignore files in root
+!/babel.config.js
+!/tsconfig.json
+!/package.json
+!/README.md
+!/.gitignore
+!/.eslintrc.js
+!/browserslistrc
