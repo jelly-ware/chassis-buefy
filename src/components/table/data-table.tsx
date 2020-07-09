@@ -67,8 +67,8 @@ const DataTable = tsx
       op: {
         type: Object as () => SchemaReq extends infer U
           ? U extends string
-            ? never
-            : U
+          ? never
+          : U
           : never
       },
       param: {
@@ -228,11 +228,11 @@ const DataTable = tsx
                     ))}
                   </b-taglist>
                 ) : (
-                  <span>
-                    {props.row[e[0]] !== undefined &&
-                      this.parse(e[1], props.row[e[0]])}
-                  </span>
-                );
+                    <span>
+                      {props.row[e[0]] !== undefined &&
+                        this.parse(e[1], props.row[e[0]])}
+                    </span>
+                  );
               return this.completeColumn(col);
             });
             this.loadAsyncData();
@@ -298,27 +298,27 @@ const DataTable = tsx
           const orderBy = [...this.newOrderBy, ...this.orderBy];
           const promise = this.op
             ? chassis.api.rs.of(
-                this.op.op,
-                ...(typeof this.op.svc === "string"
-                  ? [this.op.svc]
-                  : this.op.svc)
-              )<PagedResponse, {}>({
-                param: this.param,
-                where,
-                orderBy,
-                pageNumber: this.pagedResponse.meta.pageNumber,
-                pageSize: this.pagedResponse.meta.pageSize
-              })
+              this.op.op,
+              ...(typeof this.op.svc === "string"
+                ? [this.op.svc]
+                : this.op.svc)
+            )<PagedResponse, {}>({
+              param: this.param,
+              where,
+              orderBy,
+              pageNumber: this.pagedResponse.meta.pageNumber,
+              pageSize: this.pagedResponse.meta.pageSize
+            })
             : chassis.crud.select({
-                mdl: this.newSchema.mdl,
-                where,
-                orderBy,
-                pageNumber: this.pagedResponse.meta.pageNumber,
-                pageSize: this.pagedResponse.meta.pageSize
-              });
+              mdl: this.newSchema.mdl,
+              where,
+              orderBy,
+              pageNumber: this.pagedResponse.meta.pageNumber,
+              pageSize: this.pagedResponse.meta.pageSize
+            });
           this.pagedResponse = await promise;
         } catch (error) {
-          NotificationProgrammatic.open({
+          this.$buefy.notification.open({
             message: error,
             hasIcon: true,
             position: "is-top-right",
@@ -415,11 +415,11 @@ const DataTable = tsx
                       scopedSlots={{
                         header: this.rowAction.header
                           ? (props: { column: Column; index: number }) =>
-                              this.rowAction.header!()
+                            this.rowAction.header!()
                           : undefined,
                         subheading: this.rowAction.header
                           ? (props: { column: Column; index: number }) =>
-                              this.rowAction.subheading!()
+                            this.rowAction.subheading!()
                           : undefined
                       }}
                     >
@@ -441,8 +441,8 @@ const DataTable = tsx
                           ))}
                         </div>
                       ) : (
-                        undefined
-                      )}
+                            undefined
+                          )}
                     </b-table-column>
                   );
                 this.computedColumns.forEach(col =>
@@ -453,11 +453,11 @@ const DataTable = tsx
                       scopedSlots={{
                         header: col.header
                           ? (props: { column: Column; index: number }) =>
-                              col.header!(props.column, props.index)
+                            col.header!(props.column, props.index)
                           : undefined,
                         subheading: col.header
                           ? (props: { column: Column; index: number }) =>
-                              col.subheading!(props.column, props.index)
+                            col.subheading!(props.column, props.index)
                           : undefined
                       }}
                     >
@@ -473,54 +473,54 @@ const DataTable = tsx
                 this.$scopedSlots.detail ? (
                   this.$scopedSlots.default(props)
                 ) : (
-                  <div>
-                    <p class="has-text-centered heading">Raw Attributes</p>
-                    <table class="table is-hoverable is-narrow is-striped">
-                      <tbody>
-                        {this.schemaColumns.map(col => (
-                          <tr>
-                            <td>{col.label}</td>
-                            <td>{col.slot!(props)}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                    {this.columns.length + this.actionsColumns.length > 0 && [
-                      <br />,
-                      <p class="has-text-centered heading">
-                        Computed Attributes
-                      </p>,
+                    <div>
+                      <p class="has-text-centered heading">Raw Attributes</p>
                       <table class="table is-hoverable is-narrow is-striped">
                         <tbody>
-                          {this.columns.map(col => (
+                          {this.schemaColumns.map(col => (
                             <tr>
-                              <td>
-                                {col.label || v.titleCase(col["custom-key"])}
-                              </td>
-                              <td>
-                                {col.slot
-                                  ? col.slot(props)
-                                  : props.row[col["custom-key"]]}
-                              </td>
-                            </tr>
-                          ))}
-                          {this.actionsColumns.map(col => (
-                            <tr>
-                              <td>
-                                {col.label || v.titleCase(col["custom-key"])}
-                              </td>
-                              <td>
-                                {col.slot
-                                  ? col.slot(props)
-                                  : props.row[col["custom-key"]]}
-                              </td>
+                              <td>{col.label}</td>
+                              <td>{col.slot!(props)}</td>
                             </tr>
                           ))}
                         </tbody>
                       </table>
-                    ]}
-                  </div>
-                )
+                      {this.columns.length + this.actionsColumns.length > 0 && [
+                        <br />,
+                        <p class="has-text-centered heading">
+                          Computed Attributes
+                      </p>,
+                        <table class="table is-hoverable is-narrow is-striped">
+                          <tbody>
+                            {this.columns.map(col => (
+                              <tr>
+                                <td>
+                                  {col.label || v.titleCase(col["custom-key"])}
+                                </td>
+                                <td>
+                                  {col.slot
+                                    ? col.slot(props)
+                                    : props.row[col["custom-key"]]}
+                                </td>
+                              </tr>
+                            ))}
+                            {this.actionsColumns.map(col => (
+                              <tr>
+                                <td>
+                                  {col.label || v.titleCase(col["custom-key"])}
+                                </td>
+                                <td>
+                                  {col.slot
+                                    ? col.slot(props)
+                                    : props.row[col["custom-key"]]}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      ]}
+                    </div>
+                  )
             }}
           >
             <b-taglist attached slot="bottom-left">
@@ -534,18 +534,18 @@ const DataTable = tsx
             {this.$slots.empty ? (
               this.$slots.empty
             ) : (
-              <section slot="empty" class="section">
-                <div class="content has-text-grey has-text-centered">
-                  <p>
-                    <b-icon
-                      icon={this.showLoading ? "spinner" : "frown-open"}
-                      size="is-large"
-                    ></b-icon>
-                  </p>
-                  <p>{this.showLoading ? "Fetching data." : "Nothing here."}</p>
-                </div>
-              </section>
-            )}
+                <section slot="empty" class="section">
+                  <div class="content has-text-grey has-text-centered">
+                    <p>
+                      <b-icon
+                        icon={this.showLoading ? "spinner" : "frown-open"}
+                        size="is-large"
+                      ></b-icon>
+                    </p>
+                    <p>{this.showLoading ? "Fetching data." : "Nothing here."}</p>
+                  </div>
+                </section>
+              )}
           </b-table>
         </div>
       );

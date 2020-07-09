@@ -1,12 +1,4 @@
 import {
-  DialogProgrammatic,
-  LoadingProgrammatic,
-  ModalProgrammatic,
-  NotificationProgrammatic,
-  SnackbarProgrammatic,
-  ToastProgrammatic
-} from "buefy";
-import {
   BDialogConfig,
   BModalConfig,
   BPromptDialogConfig
@@ -45,13 +37,13 @@ const Generic = tsx.component({
       modals: [] as ModalHandler[],
       dialog: {
         alert: (params: BDialogConfig | string) => {
-          DialogProgrammatic.alert(params);
+          this.$buefy.dialog.alert(params);
         },
         confirm: (params: BDialogConfig) => {
-          DialogProgrammatic.confirm(params);
+          this.$buefy.dialog.confirm(params);
         },
         prompt: (params: BPromptDialogConfig) => {
-          DialogProgrammatic.prompt(params);
+          this.$buefy.dialog.prompt(params);
         }
       },
       loading: {
@@ -67,7 +59,7 @@ const Generic = tsx.component({
             if (loadingHandler.containers[ref]) {
               loadingHandler.containers[ref].close();
             }
-            loadingHandler.containers[ref] = LoadingProgrammatic.open({
+            loadingHandler.containers[ref] = this.$buefy.loading.open({
               canCancel,
               onCancel,
               container
@@ -76,7 +68,7 @@ const Generic = tsx.component({
             if (loadingHandler.page) {
               loadingHandler.page.close();
             }
-            loadingHandler.page = LoadingProgrammatic.open({
+            loadingHandler.page = this.$buefy.loading.open({
               canCancel,
               onCancel,
               container
@@ -105,7 +97,7 @@ const Generic = tsx.component({
           type: Type = "is-primary",
           position: Position = "is-top-right"
         ) => (duration: AlertDuration) => {
-          NotificationProgrammatic.open({
+          this.$buefy.notification.open({
             message,
             type,
             position,
@@ -128,7 +120,7 @@ const Generic = tsx.component({
               }
             }
         ) => (duration: AlertDuration) => {
-          SnackbarProgrammatic.open({
+          this.$buefy.snackbar.open({
             message,
             type,
             position,
@@ -144,7 +136,7 @@ const Generic = tsx.component({
           type: Type = "is-primary",
           position: Position = "is-bottom"
         ) => (duration: AlertDuration) => {
-          ToastProgrammatic.open({
+          this.$buefy.toast.open({
             message,
             type,
             position,
@@ -193,30 +185,6 @@ const Generic = tsx.component({
             params
           )
         )
-        // ModalProgrammatic.open(
-        //   R.mergeRight(
-        //     {
-        //       component: Modal,
-        //       props: {
-        //         value: configuration
-        //       },
-        //       events: {
-        //         handle: (handler: ModalHandler) => {
-        //           if (idx !== undefined) {
-        //             this.$set(this.modals, idx, handler);
-        //           } else {
-        //             idx = this.modals.push(handler) - 1;
-        //             resolve(idx);
-        //           }
-        //         }
-        //       },
-        //       canCancel: configuration.canCancel,
-        //       fullScreen: configuration.fullScreen,
-        //       hasModalCard
-        //     },
-        //     params
-        //   )
-        // );
       });
     }
   }
