@@ -122,11 +122,11 @@ const Generic = tsx.component({
             label: string;
             callback: () => void;
           } = {
-            label: "OK",
-            callback: () => {
-              // empty
+              label: "OK",
+              callback: () => {
+                // empty
+              }
             }
-          }
         ) => (duration: AlertDuration) => {
           SnackbarProgrammatic.open({
             message,
@@ -169,7 +169,7 @@ const Generic = tsx.component({
         if (configuration.foot)
           if (typeof configuration.foot === "function") hasModalCard = true;
           else if (configuration.foot.length > 0) hasModalCard = true;
-        ModalProgrammatic.open(
+        this.$buefy.modal.open(
           R.mergeRight(
             {
               component: Modal,
@@ -192,7 +192,31 @@ const Generic = tsx.component({
             },
             params
           )
-        );
+        )
+        // ModalProgrammatic.open(
+        //   R.mergeRight(
+        //     {
+        //       component: Modal,
+        //       props: {
+        //         value: configuration
+        //       },
+        //       events: {
+        //         handle: (handler: ModalHandler) => {
+        //           if (idx !== undefined) {
+        //             this.$set(this.modals, idx, handler);
+        //           } else {
+        //             idx = this.modals.push(handler) - 1;
+        //             resolve(idx);
+        //           }
+        //         }
+        //       },
+        //       canCancel: configuration.canCancel,
+        //       fullScreen: configuration.fullScreen,
+        //       hasModalCard
+        //     },
+        //     params
+        //   )
+        // );
       });
     }
   }
