@@ -1,6 +1,6 @@
 {
   "name": "@jelly-ware/chassis-buefy",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "./dist/@jelly-ware/chassis-buefy.umd.min.js",
   "typings": "./types/index.d.ts",
   "scripts": {
