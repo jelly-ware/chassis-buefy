@@ -321,7 +321,7 @@ const DataTable = tsx
               pageSize: this.pagedResponse.meta.pageSize
             });
           this.pagedResponse = await promise;
-          this.$emit('async-data-loaded', this.pagedResponse)
+          this.$emit('asyncDataLoaded', this.pagedResponse)
         } catch (error) {
           this.$buefy.notification.open({
             message: error,
