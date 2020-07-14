@@ -42,8 +42,12 @@ interface ScopedSlots {
   default: DefaultSlotProps;
 }
 
+interface EventsWithOn {
+  onAsyncDataLoaded(pagedResponse: PagedResponse): void
+}
+
 const DataTable = tsx
-  .componentFactoryOf<{}, ScopedSlots>()
+  .componentFactoryOf<EventsWithOn, ScopedSlots>()
   .mixin(Schema)
   .mixin(Generic)
   .create({
@@ -317,6 +321,7 @@ const DataTable = tsx
               pageSize: this.pagedResponse.meta.pageSize
             });
           this.pagedResponse = await promise;
+          this.$emit('async-data-loaded', this.pagedResponse)
         } catch (error) {
           this.$buefy.notification.open({
             message: error,
