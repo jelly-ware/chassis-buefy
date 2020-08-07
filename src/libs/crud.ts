@@ -25,7 +25,7 @@ interface Enum {
   [key: string]: any;
 }
 
-type PredicateType = "EQUAL" | "LIKE" | "OR";
+type PredicateType = 'EQUAL' | 'LIKE' | 'OR' | 'AND' | 'IS_NULL' | 'IS_NOT_NULL';
 
 interface Predicate {
   type: PredicateType;
