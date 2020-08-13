@@ -44,6 +44,7 @@ interface ScopedSlots {
 
 interface EventsWithOn {
   onAsyncDataLoaded(pagedResponse: PagedResponse): void
+  onRowsChecked(checkedRows: { [key: string]: any }[]): void
 }
 
 const DataTable = tsx
@@ -370,7 +371,10 @@ const DataTable = tsx
             aria-current-label="Current page"
             checkable={this.checkable}
             checked-rows={this.checkedRows}
-            onCheck={(cl: any) => (this.checkedRows = cl)}
+            onCheck={(cl: any) => {
+              this.checkedRows = cl
+              this.$emit('rowsChecked', this.checkedRows)
+            }}
             detailed={this.detailed}
             sticky-header={this.stickyHeader}
             height={this.height}
